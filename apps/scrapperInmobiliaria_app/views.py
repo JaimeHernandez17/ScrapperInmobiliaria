@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 
+from apps.scrapperInmobiliaria_app.tasks import searcher_inmobiliaria_1
 from .tasks import main
 from .forms import ScrapperForm
 
