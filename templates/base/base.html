@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %} Instagram Bot {% endblock %}</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'plantilla/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'plantilla/css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'plantilla/css/style.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plantilla/css/style.css' %}" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 1000px;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 650px;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #1C2331 !important;
+            }
+        }
+    </style>
+    {% block links %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <i class="fab fa-instagram fa-lg"></i>
+            <strong>ScrapperInmobiliaria</strong>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    </div>
+</nav>
+
+<div class="view full-page-intro"
+     style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+        <div class="container">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+    </div>
+
+</div>
+<footer class="page-footer text-center font-small wow fadeIn">
+
+    <div class="footer-copyright py-3">
+        © 2019 Copyright:
+        <a href="https://LSV-TECH.COM" target="_blank"> LSV TECH </a>
+    </div>
+
+</footer>
+<!--/.Footer-->
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+{% block js %}
+    <script type="text/javascript" src="{% static 'plantilla/js/jquery-3.4.0.min.js' %}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'plantilla/js/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'plantilla/js/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'plantilla/js/mdb.min.js' %}"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        new WOW().init();
+    </script>
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+
+{% block title %} INDEX {% endblock %}
+
+<body>
+
+{% block content %}
+    <!--Grid row-->
+    <!--Grid row-->
+    <div class="row wow fadeIn col-xs-12">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4" style="margin-left: auto;margin-right: auto;">
+
+            <!--Card-->
+            <div class="card">
+
+                <!--Card content-->
+                <div class="card-body">
+
+                    <!-- Form -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- Heading -->
+                        <h3 class="dark-grey-text text-center">
+                            <strong>ScrapperInmobiliaria</strong>
+                        </h3>
+                        <hr>
+
+                        <div class="md-form">
+                            <i class="fas fa-address-card prefix grey-text"></i>
+                            <label for="id_email">{{ form.email.label }}</label><br>
+                            {{ form.email }}
+                        </div>
+                        <div class="md-form">
+                            <i class="fas fa-key prefix grey-text"></i>
+                            <label for="id_sector">{{ form.sector.label }}</label><br>
+                            {{ form.sector }}
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-indigo" type="submit">
+                                <i class="fas fa-search mr-2"></i>Search</button>
+                        </div>
+
+                    </form>
+                    <!-- Form -->
+
+                </div>
+
+            </div>
+            <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+
+
+    </div>
+    <!--Grid row-->
+{% endblock %}
+
+</body>
