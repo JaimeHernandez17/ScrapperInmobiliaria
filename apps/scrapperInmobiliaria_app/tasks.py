@@ -33,7 +33,8 @@ def searcher_inmobiliaria_1(route, sector):
     for divv in div_list:
         info += f"{divv.text}\n"
     print(info)
-    return info
+    info_list = [info]
+    return info_list
 
 
 @celery_app.task
