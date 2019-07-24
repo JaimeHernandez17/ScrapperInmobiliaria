@@ -2,13 +2,15 @@ import os
 import time
 
 from celery import chord, group, chain
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from django.core.mail import send_mail
 
 from ScrapperInmobiliaria.celery import app as celery_app
-from apps.scrapperInmobiliaria_app.credentials import EMAIL_FROM
+from .credentials import EMAIL_FROM
 
 
 @celery_app.task
@@ -16,10 +18,10 @@ def searcher_inmobiliaria_1(route, sector):
     browser = webdriver.Firefox(executable_path=route)
 
     browser.get('https://www.inmobiliariacartagena.com/arriendo-de-inmuebles-en-cartagena-colombia')
-    time.sleep(1)
+    time.sleep(2)
 
     browser.find_elements_by_class_name('zelected')[3].click()
-    time.sleep(1)
+    time.sleep(2)
     search_input = browser.find_elements_by_class_name('zearch')[3]
     time.sleep(2)
     search_input.send_keys(sector)
@@ -29,12 +31,12 @@ def searcher_inmobiliaria_1(route, sector):
     browser.find_elements_by_tag_name('button')[1].click()
     time.sleep(2)
     div_list = browser.execute_script("return document.getElementsByClassName('feature_item heading_space')")
-    info = ""
+    info = []
     for divv in div_list:
-        info += f"{divv.text}\n"
-    print(info)
-    info_list = [info]
-    return info_list
+        info_div = f"{divv.text}"
+        info.append(info_div)
+    print(info[0])
+    return info
 
 
 @celery_app.task
@@ -78,17 +80,21 @@ def send_email(apto_list, email):
     message = f'The next apartments has been found:\n'
     for i in apto_list:
         message += f'* {i}\n'
+
+    html_message = render_to_string('email.html', {'context': message})
+    plain_message = strip_tags(html_message)
     send_mail(
-        'Found apartments',
-        message,
+        'Found apartments',  # subject
+        plain_message,
         EMAIL_FROM,
         [email],
+        html_message=html_message
     )
 
 
 @celery_app.task
 def main(email, sector):
-    path = os.path.dirname(os.path.abspath(__file__)).split('apps')
+    path = os.path.dirname(os.path.abspath(__file__)).split('scrapperInmobiliaria_app')
     route = f'{path[0]}Driver/geckodriver'
     tasks_group = [searcher_inmobiliaria_1.s(route, sector), ]
     chord(group(tasks_group), send_email.s(email)).delay()
