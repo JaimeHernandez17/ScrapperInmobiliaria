@@ -1,0 +1,52 @@
+{% extends 'anime_importer/base/base.html' %}
+
+{% load static %}
+
+{% block title %} Anime importer {% endblock %}
+
+<body>
+{% block content %}
+    <div class="view full-page-intro"
+         style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="container">
+                <!--Grid row-->
+                <!--Grid row-->
+                <div class="row wow fadeIn col-xs-12">
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4" style="margin-left: auto;margin-right: auto;">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card content-->
+                            <div class="card-body" style="padding-top: 103px;">
+
+                                <div class="text-center">
+                                    <a href="{% url 'addfile' %}" class="btn btn-indigo" type="button">Add file</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+
+
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Content -->
+
+        </div>
+
+    </div>
+{% endblock %}
+</body>
