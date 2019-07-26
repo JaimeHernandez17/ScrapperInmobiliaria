@@ -1,7 +1,6 @@
 import os
 
 from django.conf import settings
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
