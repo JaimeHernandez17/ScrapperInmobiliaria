@@ -30,7 +30,6 @@
                                 <!-- Form -->
                                 <form enctype="multipart/form-data" method="post">
                                     {% csrf_token %}
-                                    {{ form.errors }}
                                     <!-- Heading -->
                                     <h3 class="dark-grey-text text-center">
                                         <strong>Anime importer</strong>
@@ -46,7 +45,13 @@
                                     <div class="text-center">
                                         <button class="btn btn-indigo" type="submit">Send</button>
                                     </div>
-
+                                    <br>
+                                    {% if form.errors %}
+                                        <center>
+                                        <span style="color: red;"><strong> * The file must weight 100 MB maximum</strong></span><br>
+                                        <span style="color: red;"><strong> * The file must .CSV</strong></span>
+                                        </center>
+                                    {% endif %}
                                 </form>
                                 <!-- Form -->
 

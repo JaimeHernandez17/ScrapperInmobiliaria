@@ -9,6 +9,7 @@ class AnimeFile(models.Model):
     def __str__(self):
         return self.file
 
+
 class Anime(models.Model):
     anime_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
