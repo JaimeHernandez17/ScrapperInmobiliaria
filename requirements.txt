@@ -1,5 +1,5 @@
 Django==2.2.3
 psycopg2==2.8.3
-celery==4.3.0
+celery==5.2.2
 selenium==3.141.0
 beautifulsoup4==4.7.1
